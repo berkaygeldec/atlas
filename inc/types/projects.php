@@ -42,6 +42,7 @@ function custom_project_post_type() {
 		'menu_position'         => 5,
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
+		'rewrite' => array('slug' => 'projects'),
 		'show_in_rest'     => true,
 		'can_export'            => true,
 		'has_archive'           => true,
