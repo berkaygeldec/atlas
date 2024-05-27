@@ -1,7 +1,7 @@
 <?php
 require_once('inc/customizer.php');
 require_once('inc/types/projects.php');
-
+add_theme_support( 'title-tag' );
 define('GITHUB_USER', 'berkaygeldec');
 define('GITHUB_REPO', 'atlas');
 class Custom_Mobil_Menu_Walker extends Walker_Nav_Menu {
