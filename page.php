@@ -1,4 +1,7 @@
-<?php get_header(''); if (have_posts()) : while (have_posts()) : the_post(); $reading_time = get_post_reading_time(get_the_content()); 
+<?php get_header(''); if (have_posts()) : while (have_posts()) : the_post(); 
+
+$setup = new ThemeSetup();
+$reading_time = $setup->get_post_reading_time(get_the_content()); 
 
 $category = get_the_category();
 $category_name = !empty($category) ? esc_html($category[0]->name) : 'Uncategorized';
