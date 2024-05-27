@@ -1,7 +1,6 @@
 <?php
 require_once('inc/customizer.php');
 require_once('inc/types/projects.php');
-add_theme_support( 'title-tag' );
 define('GITHUB_USER', 'berkaygeldec');
 define('GITHUB_REPO', 'atlas');
 class Custom_Mobil_Menu_Walker extends Walker_Nav_Menu {
@@ -60,6 +59,7 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
 class ThemeSetup {
     public function __construct() {
         add_action('init', [$this, 'register_my_menus']);
+        add_theme_support( 'title-tag' );
         add_action('wp_ajax_nopriv_loadmore', [$this, 'loadmore_ajax_handler']);
         add_action('wp_ajax_loadmore', [$this, 'loadmore_ajax_handler']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_loadmore_script']);
