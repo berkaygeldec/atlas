@@ -3,9 +3,29 @@
     class="flex flex-col items-center justify-between border-t border-grey-lighter py-10 sm:flex-row sm:py-12"
   >
     <div class="mr-auto flex flex-col items-center sm:flex-row">
-      <a href="/" class="mr-auto sm:mr-6">
-        <img src="<?php bloginfo('template_url'); ?>/assets/img/logo.svg" alt="logo" />
-      </a>
+    <a href="<?php bloginfo('url'); ?>/" class="flex items-center">
+      <span href="<?php bloginfo('url'); ?>/" class="mr-2">
+      <?php
+// Retrieve custom logo settings
+$logo_type = get_theme_mod('custom_logo_type');
+$template_url = get_bloginfo('template_url');
+$logo_image = get_theme_mod('custom_logo_image');
+$logo_text = get_theme_mod('custom_logo_text', 'John Doe');
+
+// Determine the logo image source
+$limg = $logo_image ? esc_url($logo_image) : esc_url($template_url . '/assets/img/logo.svg');
+?>
+
+<!-- Logo Image -->
+<img src="<?php echo esc_url($logo_type == 'text' ? $template_url . '/assets/img/logo.svg' : $limg); ?>" alt="logo" />
+</span>
+<!-- Conditional Logo Text -->
+<?php if ($logo_type == 'text') : ?>
+    <p class="hidden font-body text-2xl font-bold text-primary mr-4 dark:text-white lg:block">
+        <?php echo esc_html($logo_text); ?>
+    </p>
+<?php endif; ?>
+    </a>
       <p class="pt-5 font-body font-light text-primary dark:text-white sm:pt-0">
         
       <?php echo get_theme_mod('custom_copyright_text', '©2024 <a href="https://github.com/berkaygeldec/atlas" target="_blank" title="Atlas is a Personal Blog WordPress theme made with the latest technologies like TailwindCSS.">Atlas</a>.'); ?>

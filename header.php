@@ -23,8 +23,8 @@
   <div id="main">
       <div class="container mx-auto">
   <div class="flex items-center justify-between py-6 lg:py-10">
-    <a href="/" class="flex items-center">
-      <span href="/" class="mr-2">
+    <a href="<?php bloginfo('url'); ?>/" class="flex items-center">
+      <span href="<?php bloginfo('url'); ?>/" class="mr-2">
       <?php
 // Retrieve custom logo settings
 $logo_type = get_theme_mod('custom_logo_type');
