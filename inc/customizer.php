@@ -16,6 +16,11 @@ function mytheme_customize_register($wp_customize) {
         'default' => '',
         'sanitize_callback' => 'esc_url_raw',
     ));
+    // Logo resmi için dosya yükleme alanı ekleyin
+    $wp_customize->add_setting('custom_avatar_image', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
     // Logo metni için alan ekleyin
     $wp_customize->add_setting('custom_logo_text', array(
         'default' => 'John Doe',
@@ -48,6 +53,11 @@ function mytheme_customize_register($wp_customize) {
         'active_callback' => 'is_logo_text',
     ));
 
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'mytheme_logo_control', array(
+        'label'        => __( 'Avatar', 'mytheme' ),
+        'section'    => 'atlas_theme_settings',
+        'settings'   => 'custom_avatar_image',
+    ) ) );
 
 
     //About me
@@ -206,6 +216,14 @@ function is_logo_text($control) {
 
 function is_logo_image($control) {
     return $control->manager->get_setting('custom_logo_type')->value() === 'image';
+}
+function mytheme_display_avatar() {
+    $logo = get_theme_mod( 'custom_avatar_image' );
+    if ( $logo ) {
+        echo '<img src="' . esc_url( $logo ) . '" alt="' . get_bloginfo( 'name' ) . '">';
+    } else {
+        echo '<h1>' . get_bloginfo( 'name' ) . '</h1>';
+    }
 }
 
 add_action('customize_register', 'mytheme_customize_register');

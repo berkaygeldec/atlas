@@ -3,7 +3,8 @@
       <div><div class="container mx-auto">
   <div class="border-b border-grey-lighter py-16 lg:py-20">
     <div>
-      <img src="<?php bloginfo('template_url'); ?>//assets/img/author.png" class="h-16 w-16" alt="author" />
+    <?php $default_avatar =  get_template_directory_uri().'/assets/img/author.png'; ?>
+      <img src="<?php echo get_theme_mod('custom_avatar_image',get_template_directory_uri().'/assets/img/author.png'); ?>" class="h-16 w-16 rounded-full" alt="author" />
     </div>
     <h1
       class="pt-3 font-body text-4xl font-semibold text-primary dark:text-white md:text-5xl lg:text-6xl"
