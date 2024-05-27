@@ -68,8 +68,6 @@ class ThemeSetup {
         add_action('init', [$this, 'disable_embeds_code_init'], 9999);
         add_action('wp_default_scripts', [$this, 'remove_jquery_migrate']);
         add_filter('pre_comment_approved', [$this, 'disable_pingback_trackback'], 10, 2);
-        
-        // Gereksiz meta etiketlerini kaldır
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wlwmanifest_link');
         remove_action('wp_head', 'wp_generator');
@@ -81,20 +79,14 @@ class ThemeSetup {
         remove_action('wp_head', 'wp_oembed_add_discovery_links');
         remove_action('wp_head', 'feed_links', 2);
         remove_action('wp_head', 'feed_links_extra', 3);
-
-        // XML-RPC kapat
         add_filter('xmlrpc_enabled', '__return_false');
-
-        // Emoji scriptini kapat
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('wp_print_styles', 'print_emoji_styles');
-        
-        // Veritabanı sürüm numarasını gizle
         remove_action('wp_head', 'wp_generator');
     }
 
     public function register_my_menus() {
-        register_nav_menus(['primary' => __('Birincil menü')]);
+        register_nav_menus(['primary' => __('Primary menu')]);
     }
 
     public function get_category_label($index) {
@@ -110,7 +102,7 @@ class ThemeSetup {
     public function get_post_reading_time($content) {
         $word_count = str_word_count(strip_tags($content));
         $reading_time = ceil($word_count / 200);
-        return $reading_time . ' dakika';
+        return $reading_time . ' minute';
     }
 
     public function loadmore_ajax_handler() {
@@ -201,13 +193,13 @@ class ThemeSetup {
         $new_version = $this->check_github_update();
         if ($new_version) {
             echo '<div class="notice notice-warning is-dismissible">
-                <p>Yeni bir tema güncellemesi mevcut <a href="' . esc_url('https://github.com/' . GITHUB_USER . '/' . GITHUB_REPO . '/releases/latest') . '" target="_blank">buradan indir</a>.</p>
+                <p>New version available. <a href="' . esc_url('https://github.com/' . GITHUB_USER . '/' . GITHUB_REPO . '/releases/latest') . '" target="_blank">Download now</a>.</p>
             </div>';
         }
     }
 
     public function remove_footer_admin() {
-        echo '<a href="https://www.berkaygeldec.com.tr" target="_blank" title="Berkay GELDEÇ">Berkay GELDEÇ</a>  tarafından <span style="color:#b70000;">&#10084;</span> ile geliştirildi.';
+        echo 'Developed by <a href=“https://www.berkaygeldec.com.tr” target=“_blank” title=“Berkay GELDEÇ”>Berkay GELDEÇ</a> with <span style=“color:#b70000;”>&#10084;</span>.';
     }
 
     public function disable_embeds_code_init() {
