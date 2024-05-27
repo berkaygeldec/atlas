@@ -112,7 +112,7 @@ if ($the_query->have_posts()) :
       <h3
         class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white"
       >
-        Projeler
+        Projects
       </h3>
     </div>
     <div>
