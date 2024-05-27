@@ -16,6 +16,10 @@ function mytheme_customize_register($wp_customize) {
         'default' => '',
         'sanitize_callback' => 'esc_url_raw',
     ));
+    $wp_customize->add_setting('custom_logo_image_dark', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
     // Logo resmi için dosya yükleme alanı ekleyin
     $wp_customize->add_setting('custom_avatar_image', array(
         'default' => '',
@@ -42,6 +46,12 @@ function mytheme_customize_register($wp_customize) {
         'label' => __('Logo image', 'mytheme'),
         'section' => 'atlas_theme_settings',
         'settings' => 'custom_logo_image',
+        'active_callback' => 'is_logo_image',
+    )));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'custom_image_dark_control', array(
+        'label' => __('Logo image (Dark)', 'mytheme'),
+        'section' => 'atlas_theme_settings',
+        'settings' => 'custom_logo_image_dark',
         'active_callback' => 'is_logo_image',
     )));
 

@@ -30,14 +30,16 @@
 $logo_type = get_theme_mod('custom_logo_type');
 $template_url = get_bloginfo('template_url');
 $logo_image = get_theme_mod('custom_logo_image');
+$logo_image_dark = get_theme_mod('custom_logo_image_dark');
 $logo_text = get_theme_mod('custom_logo_text', 'John Doe');
 
 // Determine the logo image source
 $limg = $logo_image ? esc_url($logo_image) : esc_url($template_url . '/assets/img/logo.svg');
+$limg_dark = $logo_image_dark ? esc_url($logo_image_dark) : esc_url($template_url . '/assets/img/logo.svg');
 ?>
 
 <!-- Logo Image -->
-<img src="<?php echo esc_url($logo_type == 'text' ? $template_url . '/assets/img/logo.svg' : $limg); ?>" alt="logo" />
+<img id="site-logo" src="<?php echo esc_url($logo_type == 'text' ? $template_url . '/assets/img/logo.svg' : $limg); ?>" light-src="<?php echo esc_url($logo_type == 'text' ? $template_url . '/assets/img/logo.svg' : $limg); ?>" dark-src="<?php echo esc_url($logo_type == 'text' ? $template_url . '/assets/img/logo.svg' : $limg_dark); ?>" alt="logo" />
 </span>
 <!-- Conditional Logo Text -->
 <?php if ($logo_type == 'text') : ?>
@@ -59,6 +61,7 @@ $limg = $logo_image ? esc_url($logo_image) : esc_url($template_url . '/assets/im
         xmlns="http://www.w3.org/2000/svg"
         @click="isMobileMenuOpen = true"
         class="fill-current text-primary dark:text-white"
+        :style="isDarkMode ? 'fill:white' : ''"
       >
         <g fill-rule="evenodd">
           <rect width="24" height="3" rx="1.5" />

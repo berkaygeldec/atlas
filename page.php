@@ -24,7 +24,7 @@ $category_name = !empty($category) ? esc_html($category[0]->name) : 'Uncategoriz
 
     <div class="flex items-center py-10">
       <span class="pr-5 font-body font-medium text-primary dark:text-white"
-        >Paylaş</span
+        >Share</span
       >
       <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank">
     <i class="bx bxl-facebook text-2xl text-primary transition-colors hover:text-secondary dark:text-white dark:hover:text-secondary"></i>
